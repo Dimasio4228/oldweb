@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 import "./App.css";
 import Card from "./Components/Card/Card";
@@ -57,7 +57,7 @@ function App() {
       }); 
     } catch (e) {  window.alert(e.name + ": " + e.message);}
 
-  }, [cartItems, queryId]);
+  }, [queryId]);
   const onCheckout = () => {
     tele.MainButton.text = "Pay :)";
     tele.MainButton.show();
