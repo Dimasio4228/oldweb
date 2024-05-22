@@ -9,7 +9,7 @@ const foods = getData();
    
 function App() {
   const [cartItems, setCartItems] = useState([]);
-  let {tg,queryId } = useTelegram();
+  let {tg } = useTelegram();
     useEffect(() => {
         tg.ready();
         tg.expand();
