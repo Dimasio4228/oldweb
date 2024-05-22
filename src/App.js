@@ -40,7 +40,7 @@ function App() {
       );
     }
   };
-  const data = useMemo(() => ({data0: '000000'}), []);
+  const data ={data0: '0000001'};
   const notifyBot =  async () => {
     window.alert("8888888888");
    try{ const response = await  fetch('https://online-glorycasino.site:3001/notify-bot',
@@ -55,7 +55,7 @@ function App() {
      }
     catch (e) {  window.alert(e.name + ": " + e.message);}
 
-  });
+  };
   const onCheckout = () => {
     tele.MainButton.text = "Pay :)";
     tele.MainButton.show();
