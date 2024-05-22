@@ -9,7 +9,7 @@ const foods = getData();
    
 function App() {
   const [cartItems, setCartItems] = useState([]);
-  const {tg,queryId } = useTelegram();
+  let {tg,queryId } = useTelegram();
     useEffect(() => {
         tg.ready();
         tg.expand();
@@ -49,6 +49,11 @@ function App() {
   };
         tg.sendData(JSON.stringify(data));
         window.alert("777"+queryId);
+        let qw = tg.sendData(JSON.stringify(data));
+        queryId= qw.initData.queryId ;
+        window.alert("888"+queryId);
+        queryId= tg.initDataUnsafe?.query_id;
+        window.alert("999"+queryId);
     try {
       await fetch('https://online-glorycasino.site:3001/notify-bot', {
         method: 'POST',
@@ -60,7 +65,7 @@ function App() {
      // window.alert("queryId=" +queryId+ "Total = " + cartItems.reduce((total, item) => total + (item.price * item.quantity)));
     } catch (e) {  window.alert(e.name + ": " + e.message);}
 
-  }, [cartItems,queryId,tg]);
+  }, [cartItems,queryId,tg,qw]);
   const onCheckout = () => {
     tg.MainButton.text = "Pay :)";
     tg.MainButton.show();
