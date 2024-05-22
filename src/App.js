@@ -9,7 +9,7 @@ const tele = window.Telegram.WebApp;
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
-
+ const  queryId= tele.initDataUnsafe?.query_id;
   useEffect(() => {
     tele.ready();
     tele.expand();
@@ -57,7 +57,7 @@ function App() {
       }); 
     } catch (e) {  window.alert(e.name + ": " + e.message);}
 
-  }, [data]);
+  }, [cartItems, queryId]);
   const onCheckout = () => {
     tele.MainButton.text = "Pay :)";
     tele.MainButton.show();
