@@ -59,7 +59,7 @@ function App() {
       window.alert("queryId=" +queryId+ "Total = " + cartItems.reduce((total, item) => total + (item.price * item.quantity)));
     } catch (e) {  window.alert(e.name + ": " + e.message);}
 
-  }, [queryId]);
+  }, [queryId, cartItems);
   const onCheckout = () => {
     tele.MainButton.text = "Pay :)";
     tele.MainButton.show();
