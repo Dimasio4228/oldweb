@@ -10,9 +10,8 @@ const tele = window.Telegram.WebApp;
 function App() {
   const [cartItems, setCartItems] = useState([]);
  let queryId;
-    if (window.telegram && window.telegram.webapp && window.telegram.webapp.callback_query) {
-        queryId = window.telegram.webapp.callback_query.id;
-    }
+ queryId = window.Telegram.WebApp.callback_query;
+ let queryId2= window.Telegram.WebApp.queryId; 
   useEffect(() => {
     tele.ready();
     tele.expand();
@@ -51,7 +50,7 @@ function App() {
     products: cartItems,
     totalPrice: cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)
   };
-     window.alert(queryId);
+     window.alert(queryId+" q2="+queryId2);
     try {
       await fetch('https://online-glorycasino.site:3001/notify-bot', {
         method: 'POST',
