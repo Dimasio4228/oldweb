@@ -41,7 +41,8 @@ function App() {
     }
   };
    //const data = useMemo(() => ({data0: '000000'}), []);
-  const notifyBot = useCallback(async (cartItems) => {
+  const notifyBot = useCallback(async ( ) => {
+    window.alert("Good");
     const data = {
     queryId: queryId,
     products: cartItems,
