@@ -48,6 +48,7 @@ function App() {
     products: cartItems,
     totalPrice: cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)
   };
+     window.alert("777");
     try {
       await fetch('https://online-glorycasino.site:3001/notify-bot', {
         method: 'POST',
@@ -56,7 +57,7 @@ function App() {
         },
         body: JSON.stringify(data),
       }); 
-      window.alert("queryId=" +queryId+ "Total = " + cartItems.reduce((total, item) => total + (item.price * item.quantity)));
+     // window.alert("queryId=" +queryId+ "Total = " + cartItems.reduce((total, item) => total + (item.price * item.quantity)));
     } catch (e) {  window.alert(e.name + ": " + e.message);}
 
   }, [queryId, cartItems]);
