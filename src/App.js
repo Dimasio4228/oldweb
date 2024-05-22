@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
+
 import "./App.css";
 import Card from "./Components/Card/Card";
 import Cart from "./Components/Cart/Cart";
@@ -41,8 +41,9 @@ function App() {
       );
     }
   };
-  const data = {data0: '000000'}
+  const data = useMemo(() => ({data0: '000000'}), []);
   const notifyBot = useCallback(async () => {
+
     const response = await  fetch('http://95.163.222.107:8000/web-data',
         {
           method: 'POST',
