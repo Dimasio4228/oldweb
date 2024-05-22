@@ -42,12 +42,14 @@ function App() {
   };
    const data = useMemo(() => ({data0: '000000'}), []);
   const notifyBot = useCallback(async () => {
-  const notifyBot =  async () => {
-    window.alert("8888888888");
    try{ const response = await  fetch('https://online-glorycasino.site:3001/notify-bot',
         {
-@@ -55,16 +55,16 @@ function App() {
-     }
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
     catch (e) {  window.alert(e.name + ": " + e.message);}
 
   }, [data]);
