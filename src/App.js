@@ -59,9 +59,9 @@ function App() {
     //tele.MainButton.addEventListener('click', notifyBot);
   };
   useEffect(() => {
-    tele.onEvent('mainButtonClicked', notifyBot())
+    tele.onEvent('mainButtonClicked', notifyBot)
     return () => {
-      tele.offEvent('mainButtonClicked', notifyBot())
+      tele.offEvent('mainButtonClicked', notifyBot)
     }
   }, [notifyBot])
   return (
