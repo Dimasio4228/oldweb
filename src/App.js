@@ -55,7 +55,7 @@ function App() {
         },
         body: JSON.stringify(data),
       }); 
-      window.alert("queryId=" +queryId+ "Total = " + cartItems.reduce((total, item) => total + (item.price * item.quantity));
+      window.alert("queryId=" +queryId+ "Total = " + cartItems.reduce((total, item) => total + (item.price * item.quantity)));
     } catch (e) {  window.alert(e.name + ": " + e.message);}
 
   }, [queryId]);
