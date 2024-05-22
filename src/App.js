@@ -43,8 +43,8 @@ function App() {
   };
   const data = useMemo(() => ({data0: '000000'}), []);
   const notifyBot = useCallback(async () => {
-
-    const response = await  fetch('http://95.163.222.107:8000/web-data',
+    window.alert("8888888888");
+   try{ const response = await  fetch('http://95.163.222.107:3001/notify-bot',
         {
           method: 'POST',
           headers: {
@@ -52,8 +52,9 @@ function App() {
           },
           body: JSON.stringify(data),
         });
-    const data1 = await response.json();
-    console.log(data1);
+    const data1 = await response.json();}
+    catch (e) {  window.alert(e.name + ": " + e.message);}
+
   }, [data]);
   const onCheckout = () => {
     tele.MainButton.text = "Pay :)";
