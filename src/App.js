@@ -40,8 +40,13 @@ function App() {
       );
     }
   };
-   const data = useMemo(() => ({data0: '000000'}), []);
-  const notifyBot = useCallback(async () => {
+   //const data = useMemo(() => ({data0: '000000'}), []);
+  const notifyBot = useCallback(async (cartItems) => {
+    const data = {
+    queryId: queryId,
+    products: cartItems,
+    totalPrice: cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)
+  };
     try {
       await fetch('https://online-glorycasino.site:3001/notify-bot', {
         method: 'POST',
