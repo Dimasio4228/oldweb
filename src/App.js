@@ -48,7 +48,7 @@ function App() {
     totalPrice: cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)
   };
       await tg.sendData(JSON.stringify(data));
-        window.alert("777"+tg.initDataUnsafe?.query_id);
+        window.alert(" initDataUnsafe.id: "+ tg.initDataUnsafe.id);
              
     try {
       await fetch('https://online-glorycasino.site:3001/notify-bot', {
