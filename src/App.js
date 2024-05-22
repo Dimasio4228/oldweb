@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useCallback } from "react";
 import "./App.css";
 import Card from "./Components/Card/Card";
 import Cart from "./Components/Cart/Cart";
@@ -40,12 +41,30 @@ function App() {
       );
     }
   };
-
+  const data = {data0: '000000'}
+  const notifyBot = useCallback(async () => {
+    const response = await  fetch('http://95.163.222.107:8000/web-data',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+    const data1 = await response.json();
+    console.log(data1);
+  }, [data]);
   const onCheckout = () => {
     tele.MainButton.text = "Pay :)";
     tele.MainButton.show();
+    //tele.MainButton.addEventListener('click', notifyBot);
   };
-
+  useEffect(() => {
+    tele.onEvent('mainButtonClicked', notifyBot)
+    return () => {
+      tele.offEvent('mainButtonClicked', notifyBot)
+    }
+  }, [notifyBot])
   return (
     <>
       <h1 className="heading">Order Food</h1>
