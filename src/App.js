@@ -49,8 +49,7 @@ function App() {
   };
       await tg.sendData(JSON.stringify(data));
         window.alert("777"+queryId);
-       queryId= tg.initDataUnsafe?.query_id;
-        window.alert("999"+queryId);
+              window.alert("999"+tg.initDataUnsafe?.query_id);
     try {
       await fetch('https://online-glorycasino.site:3001/notify-bot', {
         method: 'POST',
