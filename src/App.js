@@ -48,7 +48,7 @@ const  queryId= tele.queryId;
     products: cartItems,
     totalPrice: cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)
   };
-     window.alert("777");
+     window.alert(queryId);
     try {
       await fetch('https://online-glorycasino.site:3001/notify-bot', {
         method: 'POST',
