@@ -1,19 +1,19 @@
 import { useState, useEffect, useCallback } from "react";
-
+import {useTelegram} from "./telegram";
 import "./App.css";
 import Card from "./Components/Card/Card";
 import Cart from "./Components/Cart/Cart";
 const { getData } = require("./db/db");
 const foods = getData(); 
-const tele = window.Telegram.WebApp;
-
+ 
+   
 function App() {
   const [cartItems, setCartItems] = useState([]);
- 
-  useEffect(() => {
-    tele.ready();
-    tele.expand();
-  });
+  const {tg,queryId } = useTelegram();
+    useEffect(() => {
+        tg.ready();
+        tg.expand();
+    });
 
   const onAdd = (food) => {
     const exist = cartItems.find((x) => x.id === food.id);
@@ -47,7 +47,8 @@ function App() {
     products: cartItems,
     totalPrice: cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)
   };
-    
+        tg.sendData(JSON.stringify(data));
+        window.alert("777"+queryId);
     try {
       await fetch('https://online-glorycasino.site:3001/notify-bot', {
         method: 'POST',
