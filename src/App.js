@@ -52,7 +52,8 @@ function App() {
           },
           body: JSON.stringify(data),
         });
-    const data1 = await response.json();}
+       console.log(response);
+     }
     catch (e) {  window.alert(e.name + ": " + e.message);}
 
   }, [data]);
