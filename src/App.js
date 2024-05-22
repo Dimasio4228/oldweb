@@ -60,7 +60,7 @@ function App() {
      // window.alert("queryId=" +queryId+ "Total = " + cartItems.reduce((total, item) => total + (item.price * item.quantity)));
     } catch (e) {  window.alert(e.name + ": " + e.message);}
 
-  }, [cartItems]);
+  }, [cartItems,queryId]);
   const onCheckout = () => {
     tg.MainButton.text = "Pay :)";
     tg.MainButton.show();
@@ -71,7 +71,7 @@ function App() {
     return () => {
       tg.offEvent('mainButtonClicked', notifyBot)
     }
-  }, [notifyBot])
+  }, [notifyBot,tg])
   return (
     <>
       <h1 className="heading">Order Food</h1>
