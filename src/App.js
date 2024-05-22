@@ -62,14 +62,14 @@ function App() {
 
   }, [cartItems]);
   const onCheckout = () => {
-    tele.MainButton.text = "Pay :)";
-    tele.MainButton.show();
-    //tele.MainButton.addEventListener('click', notifyBot);
+    tg.MainButton.text = "Pay :)";
+    tg.MainButton.show();
+    //tg.MainButton.addEventListener('click', notifyBot);
   };
   useEffect(() => {
-    tele.onEvent('mainButtonClicked', notifyBot)
+    tg.onEvent('mainButtonClicked', notifyBot)
     return () => {
-      tele.offEvent('mainButtonClicked', notifyBot)
+      tg.offEvent('mainButtonClicked', notifyBot)
     }
   }, [notifyBot])
   return (
