@@ -9,7 +9,10 @@ const tele = window.Telegram.WebApp;
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
-const  queryId= tele.queryId;
+ let queryId;
+    if (window.telegram && window.telegram.webapp && window.telegram.webapp.callback_query) {
+        queryId = window.telegram.webapp.callback_query.id;
+    }
   useEffect(() => {
     tele.ready();
     tele.expand();
