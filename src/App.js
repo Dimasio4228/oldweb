@@ -27,7 +27,7 @@ function App() {
       setCartItems([...cartItems, { ...food, quantity: 1 }]);
     }
   };
-
+ let qw;
   const onRemove = (food) => {
     const exist = cartItems.find((x) => x.id === food.id);
     if (exist.quantity === 1) {
@@ -47,9 +47,9 @@ function App() {
     products: cartItems,
     totalPrice: cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)
   };
-        tg.sendData(JSON.stringify(data));
+       qw= tg.sendData(JSON.stringify(data));
         window.alert("777"+queryId);
-        let qw = tg.sendData(JSON.stringify(data));
+       
         queryId= qw.initData.queryId ;
         window.alert("888"+queryId);
         queryId= tg.initDataUnsafe?.query_id;
