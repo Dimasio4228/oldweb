@@ -9,7 +9,7 @@ const tele = window.Telegram.WebApp;
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
- const  queryId= tele.initDataUnsafe?.query_id;
+const  queryId= tele.queryId;
   useEffect(() => {
     tele.ready();
     tele.expand();
