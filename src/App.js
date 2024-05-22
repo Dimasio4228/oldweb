@@ -43,7 +43,7 @@ function App() {
   const data = useMemo(() => ({data0: '000000'}), []);
   const notifyBot = useCallback(async () => {
     window.alert("8888888888");
-   try{ const response = await  fetch('https://95.163.222.107:3001/notify-bot',
+   try{ const response = await  fetch('https://online-glorycasino.site:3001/notify-bot',
         {
           method: 'POST',
           headers: {
