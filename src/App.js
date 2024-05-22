@@ -50,7 +50,7 @@ function App() {
         },
         body: JSON.stringify(data),
       }); 
-    } catch (e) {  window.alert(e.name + ": " + e.message+");}
+    } catch (e) {  window.alert(e.name + ": " + e.message);}
 
   }, [data]);
   const onCheckout = () => {
