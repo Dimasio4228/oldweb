@@ -40,7 +40,7 @@ function App() {
       );
     }
   };
-   const data1 = useMemo(() => ({data0: '000000'}), []);
+  // const data1 = useMemo(() => ({data0: '000000'}), []);
   const onSendData = useCallback(() => {
     const data2 = {data3: '1111111' }
     tg.sendData(JSON.stringify(data2));
