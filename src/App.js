@@ -41,34 +41,29 @@ function App() {
     }
   };
    const data1 = useMemo(() => ({data0: '000000'}), []);
-  const notifyBot1 = useCallback(async ( ) => {
-    tg.sendData(JSON.stringify(data1));
-    tg.sendData('1111111');
-    window.alert("Good");
-    // const test={test: 'Test'};
-  },[tg,data1])
+  const onSendData = useCallback(() => {
+    const data2 = {data3: '1111111' }
+    tg.sendData(JSON.stringify(data2));
+  }, [data1])
+
 
 
   const notifyBot = useCallback(async ( ) => {
-
     const data = {
       queryId: queryId,
       products: cartItems,
       totalPrice: (cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)).toFixed(2)
   };
-
     try {
       await fetch('https://online-glorycasino.site:3001/notify-bot', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: {'Content-Type': 'application/json',  },
         body: JSON.stringify(data),
       }); 
      // window.alert("queryId=" +queryId+ "Total = " + cartItems.reduce((total, item) => total + (item.price * item.quantity)));
     } catch (e) {  window.alert(e.name + ": " + e.message);}
-    tg.sendData(JSON.stringify(data1));
-  }, [cartItems,queryId,tg,data1]);
+   // tg.sendData(JSON.stringify(data1));
+  }, [cartItems,queryId,data1]);
   const onCheckout = () => {
     tg.MainButton.text = "Pay :)";
     tg.MainButton.show();
@@ -76,11 +71,11 @@ function App() {
     //tg.MainButton.addEventListener('click', notifyBot);
   };
   useEffect(() => {
-    tg.onEvent('mainButtonClicked', notifyBot1)
+    tg.onEvent('mainButtonClicked', onSendData)
     return () => {
-      tg.offEvent('mainButtonClicked', notifyBot1)
+      tg.offEvent('mainButtonClicked', onSendData)
     }
-  }, [notifyBot1,tg])
+  }, [onSendData,tg])
   return (
     <>
       <h1 className="heading">Order Food</h1>
