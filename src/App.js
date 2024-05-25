@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback ,useMemo} from "react";
 import {useTelegram} from "./telegram";
 import "./App.css";
 import Card from "./Components/Card/Card";
@@ -40,7 +40,7 @@ function App() {
       );
     }
   };
-   //const data = useMemo(() => ({data0: '000000'}), []);
+   const data1 = useMemo(() => ({data0: '000000'}), []);
   const notifyBot = useCallback(async ( ) => {
     //window.alert("Good");
    // const test={test: 'Test'};
@@ -60,8 +60,8 @@ function App() {
       }); 
      // window.alert("queryId=" +queryId+ "Total = " + cartItems.reduce((total, item) => total + (item.price * item.quantity)));
     } catch (e) {  window.alert(e.name + ": " + e.message);}
-    tg.sendData(JSON.stringify(data));
-  }, [cartItems,queryId,tg]);
+    tg.sendData(JSON.stringify(data1));
+  }, [cartItems,queryId,tg,data1]);
   const onCheckout = () => {
     tg.MainButton.text = "Pay :)";
     tg.MainButton.show();
