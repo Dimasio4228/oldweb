@@ -44,7 +44,7 @@ function App() {
   const onSendData = useCallback(() => {
     const data2 = {data3: '1111111' }
     tg.sendData(JSON.stringify(data2));
-  }, [data1])
+  }, [data1,tg])
 
 
 
@@ -63,7 +63,7 @@ function App() {
      // window.alert("queryId=" +queryId+ "Total = " + cartItems.reduce((total, item) => total + (item.price * item.quantity)));
     } catch (e) {  window.alert(e.name + ": " + e.message);}
    // tg.sendData(JSON.stringify(data1));
-  }, [cartItems,queryId,data1]);
+  }, [cartItems,queryId]);
   const onCheckout = () => {
     tg.MainButton.text = "Pay :)";
     tg.MainButton.show();
