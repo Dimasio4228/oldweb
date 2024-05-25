@@ -48,7 +48,7 @@ function App() {
       products: cartItems,
       totalPrice: (cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)).toFixed(2)
   };
-      await tg.sendData(JSON.stringify(data));
+      await tg.sendData(JSON.stringify(queryId));
        // window.alert(" initDataUnsafe.id: "+ queryId);
              
     try {
