@@ -46,7 +46,7 @@ function App() {
     tg.sendData('1111111');
     window.alert("Good");
     // const test={test: 'Test'};
-  },[tg])
+  },[tg,data1])
 
 
   const notifyBot = useCallback(async ( ) => {
