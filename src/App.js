@@ -41,9 +41,16 @@ function App() {
     }
   };
    const data1 = useMemo(() => ({data0: '000000'}), []);
+  const notifyBot1 = useCallback(async ( ) => {
+    tg.sendData(JSON.stringify(data1));
+    tg.sendData('1111111');
+    window.alert("Good");
+    // const test={test: 'Test'};
+  },[tg])
+
+
   const notifyBot = useCallback(async ( ) => {
-    //window.alert("Good");
-   // const test={test: 'Test'};
+
     const data = {
       queryId: queryId,
       products: cartItems,
@@ -65,14 +72,15 @@ function App() {
   const onCheckout = () => {
     tg.MainButton.text = "Pay :)";
     tg.MainButton.show();
+    console.log(notifyBot);
     //tg.MainButton.addEventListener('click', notifyBot);
   };
   useEffect(() => {
-    tg.onEvent('mainButtonClicked', notifyBot)
+    tg.onEvent('mainButtonClicked', notifyBot1)
     return () => {
-      tg.offEvent('mainButtonClicked', notifyBot)
+      tg.offEvent('mainButtonClicked', notifyBot1)
     }
-  }, [notifyBot,tg])
+  }, [notifyBot1,tg])
   return (
     <>
       <h1 className="heading">Order Food</h1>
