@@ -9,7 +9,7 @@ const foods = getData();
    
 function App() {
   const [cartItems, setCartItems] = useState([]);
-  let {tg,queryId } = useTelegram();
+  const {tg,queryId } = useTelegram();
     useEffect(() => {
         tg.ready();
         tg.expand();
@@ -42,13 +42,14 @@ function App() {
   };
    //const data = useMemo(() => ({data0: '000000'}), []);
   const notifyBot = useCallback(async ( ) => {
-    window.alert("Good");
+    //window.alert("Good");
+    const test={test: 'Test'};
     const data = {
       queryId: queryId,
       products: cartItems,
       totalPrice: (cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)).toFixed(2)
   };
-      await tg.sendData(JSON.stringify(queryId));
+      await tg.sendData(JSON.stringify(test));
        // window.alert(" initDataUnsafe.id: "+ queryId);
              
     try {
