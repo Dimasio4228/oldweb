@@ -43,7 +43,7 @@ function App() {
    //const data = useMemo(() => ({data0: '000000'}), []);
   const notifyBot = useCallback(async ( ) => {
     //window.alert("Good");
-    const test={test: 'Test'};
+   // const test={test: 'Test'};
     const data = {
       queryId: queryId,
       products: cartItems,
