@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback ,useMemo} from "react";
+import { useState, useEffect, useCallback } from "react";
 import {useTelegram} from "./telegram";
 import "./App.css";
 import Card from "./Components/Card/Card";
