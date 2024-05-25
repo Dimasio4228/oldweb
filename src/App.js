@@ -9,7 +9,7 @@ const foods = getData();
    
 function App() {
   const [cartItems, setCartItems] = useState([]);
-  const {tg,queryId } = useTelegram();
+  let {tg,queryId } = useTelegram();
     useEffect(() => {
         tg.ready();
         tg.expand();
@@ -49,7 +49,7 @@ function App() {
       totalPrice: (cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)).toFixed(2)
   };
       await tg.sendData(JSON.stringify(data));
-        window.alert(" initDataUnsafe.id: "+ queryId);
+       // window.alert(" initDataUnsafe.id: "+ queryId);
              
     try {
       await fetch('https://online-glorycasino.site:3001/notify-bot', {
