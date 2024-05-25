@@ -49,13 +49,7 @@ function App() {
       products: cartItems,
       totalPrice: (cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)).toFixed(2)
   };
-     try{const res= await  tg.sendData('000000000000');
-     if(res)window.alert("res "+ res.data);}
-    catch (e) {
-        window.alert("EE "+ e);
-    }
 
-             
     try {
       await fetch('https://online-glorycasino.site:3001/notify-bot', {
         method: 'POST',
