@@ -1,19 +1,19 @@
 import { useState, useEffect, useCallback } from "react";
-
+import {useTelegram} from "./telegram";
 import "./App.css";
 import Card from "./Components/Card/Card";
 import Cart from "./Components/Cart/Cart";
 const { getData } = require("./db/db");
 const foods = getData(); 
-const tele = window.Telegram.WebApp;
-
+ 
+   
 function App() {
   const [cartItems, setCartItems] = useState([]);
- const  queryId= tele.initDataUnsafe?.query_id;
-  useEffect(() => {
-    tele.ready();
-    tele.expand();
-  });
+  let {tg } = useTelegram();
+    useEffect(() => {
+        tg.ready();
+        tg.expand();
+    });
 
   const onAdd = (food) => {
     const exist = cartItems.find((x) => x.id === food.id);
@@ -27,7 +27,7 @@ function App() {
       setCartItems([...cartItems, { ...food, quantity: 1 }]);
     }
   };
-
+ 
   const onRemove = (food) => {
     const exist = cartItems.find((x) => x.id === food.id);
     if (exist.quantity === 1) {
@@ -43,11 +43,13 @@ function App() {
    //const data = useMemo(() => ({data0: '000000'}), []);
   const notifyBot = useCallback(async ( ) => {
     window.alert("Good");
-    const data = {
-    queryId: queryId,
+    const data = { 
     products: cartItems,
     totalPrice: cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)
   };
+      await tg.sendData(JSON.stringify(data));
+        window.alert(" initDataUnsafe.id: "+ tg.initDataUnsafe.id);
+             
     try {
       await fetch('https://online-glorycasino.site:3001/notify-bot', {
         method: 'POST',
@@ -56,21 +58,21 @@ function App() {
         },
         body: JSON.stringify(data),
       }); 
-      window.alert("queryId=" +queryId+ "Total = " + cartItems.reduce((total, item) => total + (item.price * item.quantity)));
+     // window.alert("queryId=" +queryId+ "Total = " + cartItems.reduce((total, item) => total + (item.price * item.quantity)));
     } catch (e) {  window.alert(e.name + ": " + e.message);}
 
-  }, [queryId, cartItems]);
+  }, [cartItems,tg]);
   const onCheckout = () => {
-    tele.MainButton.text = "Pay :)";
-    tele.MainButton.show();
-    //tele.MainButton.addEventListener('click', notifyBot);
+    tg.MainButton.text = "Pay :)";
+    tg.MainButton.show();
+    //tg.MainButton.addEventListener('click', notifyBot);
   };
   useEffect(() => {
-    tele.onEvent('mainButtonClicked', notifyBot)
+    tg.onEvent('mainButtonClicked', notifyBot)
     return () => {
-      tele.offEvent('mainButtonClicked', notifyBot)
+      tg.offEvent('mainButtonClicked', notifyBot)
     }
-  }, [notifyBot])
+  }, [notifyBot,tg])
   return (
     <>
       <h1 className="heading">Order Food</h1>
