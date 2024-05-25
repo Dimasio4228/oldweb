@@ -44,9 +44,7 @@ function App() {
   const onSendData = useCallback(() => {
     const data2 = {data3: '1111111' }
     tele.sendData(JSON.stringify(data2));
-  }, [tele])
-
-
+  }, [ ])
 
   const notifyBot = useCallback(async ( ) => {
     const data = {
@@ -75,7 +73,7 @@ function App() {
     return () => {
       tele.offEvent('mainButtonClicked', onSendData)
     }
-  }, [onSendData,tele])
+  }, [onSendData])
   return (
     <>
       <h1 className="heading">Order Food</h1>
@@ -90,5 +88,4 @@ function App() {
     </>
   );
 }
-
 export default App;
