@@ -9,7 +9,7 @@ const foods = getData();
    
 function App() {
   const [cartItems, setCartItems] = useState([]);
-  const {tg } = useTelegram();
+  const {tg ,queryId} = useTelegram();
     useEffect(() => {
         tg.ready();
         tg.expand();
@@ -45,10 +45,12 @@ function App() {
     //window.alert("Good");
     const test={test: 'Test'};
     const data = {
+      queryId: queryId,
       products: cartItems,
       totalPrice: (cartItems.reduce((total, item) => total + (item.price * item.quantity), 0)).toFixed(2)
   };
-     try{ await tg.sendData(JSON.stringify(test));}
+     try{const res= await  tg.sendData(JSON.stringify(test));
+       window.alert("res "+ res.data);}
     catch (e) {
         window.alert("EE "+ e);
     }
@@ -65,7 +67,7 @@ function App() {
      // window.alert("queryId=" +queryId+ "Total = " + cartItems.reduce((total, item) => total + (item.price * item.quantity)));
     } catch (e) {  window.alert(e.name + ": " + e.message);}
 
-  }, [cartItems,tg]);
+  }, [cartItems,tg,queryId]);
   const onCheckout = () => {
     tg.MainButton.text = "Pay :)";
     tg.MainButton.show();
