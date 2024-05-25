@@ -5,14 +5,14 @@ import Card from "./Components/Card/Card";
 import Cart from "./Components/Cart/Cart";
 const { getData } = require("./db/db");
 const foods = getData();
-const tele = window.Telegram.WebApp;
+
    
 function App() {
   const [cartItems, setCartItems] = useState([]);
-  let {queryId} = useTelegram();
+  const  {tg,queryId} = useTelegram();
     useEffect(() => {
-      tele.ready();
-      tele.expand();
+      tg.ready();
+      tg.expand();
     });
 
   const onAdd = (food) => {
@@ -40,11 +40,6 @@ function App() {
       );
     }
   };
-  // const data1 = useMemo(() => ({data0: '000000'}), []);
-  const onSendData = useCallback(() => {
-    const data2 = {data3: '1111111' }
-    tele.sendData(JSON.stringify(data2));
-  }, [ ])
 
   const notifyBot = useCallback(async ( ) => {
     const data = {
@@ -60,20 +55,20 @@ function App() {
       }); 
      // window.alert("queryId=" +queryId+ "Total = " + cartItems.reduce((total, item) => total + (item.price * item.quantity)));
     } catch (e) {  window.alert(e.name + ": " + e.message);}
-   // tg.sendData(JSON.stringify(data1));
-  }, [cartItems,queryId]);
+   tg.sendData(JSON.stringify(data));
+  }, [cartItems,queryId,tg]);
   const onCheckout = () => {
-    tele.MainButton.text = "Pay :)";
-    tele.MainButton.show();
+    tg.MainButton.text = "Pay :)";
+    tg.MainButton.show();
     console.log(notifyBot);
     //tg.MainButton.addEventListener('click', notifyBot);
   };
   useEffect(() => {
-    tele.onEvent('mainButtonClicked', onSendData)
+    tg.onEvent('mainButtonClicked', notifyBot)
     return () => {
-      tele.offEvent('mainButtonClicked', onSendData)
+      tg.offEvent('mainButtonClicked', notifyBot)
     }
-  }, [onSendData])
+  }, [tg,notifyBot])
   return (
     <>
       <h1 className="heading">Order Food</h1>
