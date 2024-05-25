@@ -44,7 +44,7 @@ function App() {
   const onSendData = useCallback(() => {
     const data2 = {data3: '1111111' }
     tg.sendData(JSON.stringify(data2));
-  }, [data1,tg])
+  }, [tg])
 
 
 
